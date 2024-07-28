@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public Grid MapGrid;
     public Camera MainCamera;
 
+    public CropData[] Crops;
+
     void Awake()
     {
         Instance = this;
