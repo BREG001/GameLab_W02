@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class CursorController : MonoBehaviour
 {
-    [SerializeField] private CursorEventArgs cursorEvent;
-
     [SerializeField] private SpriteRenderer cursorSprite;
 
     [SerializeField] private Vector2Int _startTilePoint;
     [SerializeField] private Vector2Int _endTilePoint;
+
+    public CursorModeEnum cursorMode = CursorModeEnum.None;
 
     void Awake()
     {
@@ -23,32 +23,45 @@ public class CursorController : MonoBehaviour
         _endTilePoint = _startTilePoint +
                         new Vector2Int(FarmController.instance._width - 1,
                             FarmController.instance._height - 1);
-
-        cursorEvent.CursorClick += OnCursorClick;
-    }
-
-    void OnDestroy()
-    {
-        cursorEvent.CursorClick -= OnCursorClick;
     }
 
     void Update()
     {
         if (!CheckCursorOutOfTilemap())
         {
+            // 커서가 타일맵 위에 있을 시 커서 출력 및 클릭 이벤트 추가
             DrawCursor();
 
             if (Input.GetMouseButtonDown(0))
-                cursorEvent.CallCursorClick();
+            {
+                SetCursorMode();
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 _cursorTile = GetCursorTile();
+                Vector3Int plantPosition = new Vector3Int((int)_cursorTile.x, (int)_cursorTile.y);
+
+                if (cursorMode == CursorModeEnum.Harvest)
+                {
+                    FarmController.instance.HarvestCrop(plantPosition.x, plantPosition.y);
+                }
+                else if (cursorMode == CursorModeEnum.Plant)
+                {
+                    FarmController.instance.PlantCrop(plantPosition.x, plantPosition.y, 0);
+                }
+            }
         }
         else
         {
+            // 커서가 타일맵 위에 없으면 커서 출력 X
             cursorSprite.enabled = false;
         }
     }
 
     private void DrawCursor()
     {
+        // 커서 출력
         if (!cursorSprite.enabled) cursorSprite.enabled = true;
 
         Vector2 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -58,9 +71,17 @@ public class CursorController : MonoBehaviour
         transform.position = _mousePos;
     }
 
-    private void OnCursorClick(CursorEventArgs cursorEvent)
+    private void SetCursorMode()
     {
-        PlantSeed(0);
+        Vector3 _cursorTile = GetCursorTile();
+        Vector3Int plantPosition = new Vector3Int((int)_cursorTile.x, (int)_cursorTile.y);
+        int x = plantPosition.x - _startTilePoint.x;
+        int y = plantPosition.y - _startTilePoint.y;
+
+        if (FarmController.instance.Crops[x, y].isGrown)
+            cursorMode = CursorModeEnum.Harvest;
+        else if (!FarmController.instance.Crops[x, y].isGrown)
+            cursorMode = CursorModeEnum.Plant;
     }
 
     public Vector3Int GetCursorTile()
@@ -72,6 +93,7 @@ public class CursorController : MonoBehaviour
 
     private bool CheckCursorOutOfTilemap()
     {
+        // 커서가 타입맵위에 없는지 확인
         Vector3Int cursorTile = GetCursorTile();
         if (cursorTile.x < _startTilePoint.x || cursorTile.x > _endTilePoint.x
             || cursorTile.y < _startTilePoint.y || cursorTile.y > _endTilePoint.y)
@@ -79,13 +101,10 @@ public class CursorController : MonoBehaviour
         return false;
     }
 
-    private void PlantSeed(int cropID)
+    public enum CursorModeEnum
     {
-        if (CheckCursorOutOfTilemap()) return;
-
-        Vector3 _cursorTile = GetCursorTile();
-        Vector3Int plantPosition = new Vector3Int((int)_cursorTile.x, (int)_cursorTile.y);
-
-        FarmController.instance.SetCrop(plantPosition.x, plantPosition.y, cropID);
+        None,
+        Harvest,
+        Plant
     }
 }
