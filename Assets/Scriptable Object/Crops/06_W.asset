@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0c4e96437809b44b2d40123b9c7c66, type: 3}
+  m_Name: 06_W
+  m_EditorClassIdentifier: 
+  CropName: W
+  CropID: 6
+  Desc: "\uD14C\uC2A4\uD2B8\uC6A9 \uC791\uBB3C"
+  GrowTimeDesc: 3m 50s
+  GrowTime: 230
+  CropPrefab: {fileID: 5476161275853376466, guid: 76b4cca8a23dc7841b4d51cd830b9d14, type: 3}
+  PurchaseMoney: 5
+  SellMoney: 4
+  WaterCount: 5
+  UnlockCrops:
+  - Id: 0
+    Count: 38
+  - Id: 2
+    Count: 30
+  - Id: 4
+    Count: 16
+  - Id: 5
+    Count: 8

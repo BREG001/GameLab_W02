@@ -12,6 +12,10 @@ public class FarmController : MonoBehaviour
     public int _width;
     public int _height;
 
+    public Vector2Int TempStartTilePos;
+    public int TempWidth;
+    public int TempHeight;
+
     public int cropsMaxLevel = 4;
 
     private CropData[] cropDatas;
@@ -59,8 +63,18 @@ public class FarmController : MonoBehaviour
                 Crops[x, y].isGrown = false;
                 Crops[x, y].growLevel = 0;
                 Crops[x, y].plantTime = 0f;
+                Crops[x, y].waterCount = 0;
                 Crops[x, y].realGameObject = null;
                 Crops[x, y].cropObject = null;
+            }
+        }
+
+        Vector2Int tempVector2Int = TempStartTilePos - StartTilePos;
+        for (int x = tempVector2Int.x; x < tempVector2Int.x + TempWidth; x++)
+        {
+            for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
+            {
+                Crops[x, y].cropID = -2;
             }
         }
     }
@@ -170,6 +184,7 @@ public class FarmController : MonoBehaviour
         public bool isGrown;                // 성장 완료 여부
         public int growLevel;               // 농작물 성장 단계(스프라이트 변경을 위하여)
         public float plantTime;             // 심은 시간
+        public int waterCount;              // 물 준 횟수
         public GameObject realGameObject;   // 작물 오브젝트
         public CropObject cropObject;       // 작물 스프라이트 관리 컴포넌트
     }

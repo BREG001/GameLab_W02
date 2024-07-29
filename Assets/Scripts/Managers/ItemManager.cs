@@ -10,8 +10,8 @@ public class ItemManager : MonoBehaviour
     [SerializeField]
     private int money;
     public int Money { get { return money; } }
-    [SerializeField]
-    public Dictionary<int, int> cropCount = new Dictionary<int, int>();
+    public int[] cropCount = new int[12];
+    public bool[] unlockedCrop = new bool[12];
 
     void Awake()
     {
@@ -43,14 +43,14 @@ public class ItemManager : MonoBehaviour
 
     public void HarvestCrop(int _cropId)
     {
-        // Dict에 해당하는 작물의 id가 없으면 추가
-        if (!cropCount.ContainsKey(_cropId))
-            cropCount.Add(_cropId, 0);
-
         // 해당 작물 수 추가
         cropCount[_cropId]++;
         // 해당 작물 가격 추가
         money += GameManager.Instance.Crops[_cropId].SellMoney;
+
+        // UI 업데이트
+        GameManager.Instance.GameUI.CropCountUI.CropCountUpdate(_cropId);
+        GameManager.Instance.GameUI.SetMoneyText();
 
         Debug.Log($"{GameManager.Instance.Crops[_cropId].CropName}({_cropId}): {cropCount[_cropId]}");
     }
@@ -60,7 +60,7 @@ public class ItemManager : MonoBehaviour
         // 업그레이드 등으로 돈을 사용
 
         // 현재 소지금이 비용보다 낮으면
-        if (money < GameManager.Instance.Upgrades[_upgradeId].Money)
+        if (money < GameManager.Instance.Upgrades[_upgradeId].Money[0])
         {
             Debug.Log($"There is not enough money to purchase {GameManager.Instance.Upgrades[_upgradeId].UpgradeName}. {money} < {GameManager.Instance.Upgrades[_upgradeId].Money}");
             return false;
@@ -68,7 +68,8 @@ public class ItemManager : MonoBehaviour
         // 구매 가능하면
         else
         {
-            money -= GameManager.Instance.Upgrades[_upgradeId].Money;
+            money -= GameManager.Instance.Upgrades[_upgradeId].Money[0];
+            GameManager.Instance.GameUI.SetMoneyText();
             Debug.Log($"Purchase {GameManager.Instance.Upgrades[_upgradeId].UpgradeName}");
             return true;
         }
@@ -88,8 +89,50 @@ public class ItemManager : MonoBehaviour
         else
         {
             money -= GameManager.Instance.Crops[_cropId].PurchaseMoney;
+            GameManager.Instance.GameUI.SetMoneyText();
             Debug.Log($"Plant {GameManager.Instance.Crops[_cropId].CropName}");
             return true;
         }
+    }
+
+    public bool CheckCanUnlockCrop(int _cropId)
+    {
+        // 이미 해금한 상태이면 false
+        if (unlockedCrop[_cropId]) return false;
+
+        if (GameManager.Instance.Crops[_cropId].UnlockCrops.Length > 0)
+        {
+            // 해금에 작물이 필요하다면
+
+            int _id = 0;
+            int _needCount = 0;
+
+            for (int i = 0; i < GameManager.Instance.Crops[_cropId].UnlockCrops.Length; i++)
+            {
+                _id = GameManager.Instance.Crops[_cropId].UnlockCrops[i].Id;
+                _needCount = GameManager.Instance.Crops[_cropId].UnlockCrops[i].Count;
+
+                // 해당 작물이 부족
+                if (cropCount[_id] < _needCount)
+                {
+                    return false;
+                    Debug.Log($"Can't unlock the {GameManager.Instance.Crops[_cropId].CropName}");
+                }
+            }
+
+            Debug.Log($"Unlock the {GameManager.Instance.Crops[_cropId].CropName}");
+            return true;
+        }
+        else
+        {
+            // 해금에 작물이 필요없다면
+            Debug.Log($"No resources are needed for the cancellation of {GameManager.Instance.Crops[_cropId].CropName}.");
+            return true;
+        }
+    }
+
+    public void UnlockCrop(int _cropId)
+    {
+        unlockedCrop[_cropId] = true;
     }
 }

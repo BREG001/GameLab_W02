@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3608117182474840225}
   - component: {fileID: 5696864522104030692}
+  - component: {fileID: 454299010043497995}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,5 +45,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41703b18bf614ef4499de7b60a9b1277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GameUI: {fileID: 0}
   MapGrid: {fileID: 0}
   MainCamera: {fileID: 0}
+  Crops:
+  - {fileID: 11400000, guid: a92b78fee2ab7d44b80cd3334f9885e1, type: 2}
+  - {fileID: 11400000, guid: ff1d07d251db2dc47b8669ec5f3d1553, type: 2}
+  - {fileID: 11400000, guid: 5fa2865e7c4d1a84d85851ad2a246f3b, type: 2}
+  - {fileID: 11400000, guid: 5cc968c9c8a973a49ab91c42fef8c07e, type: 2}
+  - {fileID: 11400000, guid: 28c5176a62daeb7469ab88077da83c27, type: 2}
+  - {fileID: 11400000, guid: f3064d4249a7a0e4cbe4fb32a5dc1aa7, type: 2}
+  - {fileID: 11400000, guid: b8a4386e37bf4484fbd9d3308886b7b0, type: 2}
+  - {fileID: 11400000, guid: a93719929c085304f9c2b6cb50c3ddf2, type: 2}
+  - {fileID: 11400000, guid: 2f4487ae74ca65f4293e6a30a8c4543c, type: 2}
+  - {fileID: 11400000, guid: 51ab90063c89808449df305915addfc5, type: 2}
+  - {fileID: 11400000, guid: 0ca3e0cca1f90914b9c7c751eacf40bf, type: 2}
+  - {fileID: 11400000, guid: 126bcf75cbcf28c4ebace192d6dbc893, type: 2}
+  Upgrades:
+  - {fileID: 11400000, guid: f3d39a3c84ffd164a89cf3fffe41cff8, type: 2}
+--- !u!114 &454299010043497995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857838335191755952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694aeb990bf62ee4b96921f50b916a16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

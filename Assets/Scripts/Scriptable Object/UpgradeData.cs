@@ -9,7 +9,8 @@ public class UpgradeData : ScriptableObject
 {
     public string UpgradeName;
     public int UpgradeId;
-    public int Money;
+    public int MaxLevel;
+    public int[] Money;
     public GameObject UpgradePrefab;
 
     public enum UpgradeType

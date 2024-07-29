@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0c4e96437809b44b2d40123b9c7c66, type: 3}
+  m_Name: 09_CYMK
+  m_EditorClassIdentifier: 
+  CropName: CYMK
+  CropID: 9
+  Desc: "\uD14C\uC2A4\uD2B8\uC6A9 \uC791\uBB3C"
+  GrowTimeDesc: 4m 50s
+  GrowTime: 290
+  CropPrefab: {fileID: 5476161275853376466, guid: 05aa211874b81b046992911d357e8e18, type: 3}
+  PurchaseMoney: 7
+  SellMoney: 6
+  WaterCount: 7
+  UnlockCrops:
+  - Id: 3
+    Count: 110
+  - Id: 5
+    Count: 70
+  - Id: 6
+    Count: 40
+  - Id: 7
+    Count: 40

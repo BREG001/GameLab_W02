@@ -6,9 +6,11 @@ public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
 
+    public GameUI GameUI;
     public Grid MapGrid;
-    public Camera MainCamera;
+    public CursorController Cursor;
 
+    [Header("Resources")]
     public CropData[] Crops;
     public UpgradeData[] Upgrades;
 
