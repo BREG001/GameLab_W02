@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class FarmController : MonoBehaviour
 {
-    public static FarmController instance;
+    private static FarmController instance;
 
     public Crop[,] Crops;
     public Vector2Int StartTilePos;
@@ -19,7 +19,20 @@ public class FarmController : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        if (null == instance)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
+
+    public static FarmController Instance
+    {
+        get
+        {
+            if (null == instance)
+                return null;
+            return instance;
+        }
     }
 
     void Start()
@@ -102,6 +115,7 @@ public class FarmController : MonoBehaviour
         if (!Crops[x, y].isGrown)
             return;
 
+        ItemManager.Instance.HarvestCrop(Crops[x, y].cropID);
         Destroy(Crops[x, y].realGameObject);
 
         Crops[x, y].cropID = -1;
@@ -126,12 +140,17 @@ public class FarmController : MonoBehaviour
         else if (Crops[x, y].cropID == -1)
         {
             // 빈 타일이라면 _id의 식물 적용
+
+            // 씨앗을 구매할 돈이 부족하다면 return
+            if (!ItemManager.Instance.PlantSeed(_id))
+                return;
+
             Crops[x, y].cropID = _id;
             Crops[x, y].isGrown = false;
             Crops[x, y].growLevel = 1;
             Crops[x, y].plantTime = Time.realtimeSinceStartup;
 
-            Crops[x, y].realGameObject = Instantiate(cropDatas[_id].CropObject, cropsParentTf);
+            Crops[x, y].realGameObject = Instantiate(cropDatas[_id].CropPrefab, cropsParentTf);
             Crops[x, y].realGameObject.transform.position = new Vector3(_x + 0.5f, _y + 0.5f, 0);
 
             Crops[x, y].cropObject = Crops[x, y].realGameObject.GetComponent<CropObject>();
@@ -148,7 +167,7 @@ public class FarmController : MonoBehaviour
     public class Crop
     {
         public int cropID;                  // 농작물 id 값
-        public bool isGrown;                 // 성장 완료 여부
+        public bool isGrown;                // 성장 완료 여부
         public int growLevel;               // 농작물 성장 단계(스프라이트 변경을 위하여)
         public float plantTime;             // 심은 시간
         public GameObject realGameObject;   // 작물 오브젝트

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8376735877643865838}
   - component: {fileID: 7842071650130623742}
   - component: {fileID: 8285890888839352419}
-  - component: {fileID: 8650930347802269019}
   m_Layer: 3
   m_Name: Cursor
   m_TagString: Untagged
@@ -98,19 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c31f933d2a56e314db7a098fe5336fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorEvent: {fileID: 8650930347802269019}
   cursorSprite: {fileID: 7842071650130623742}
   _startTilePoint: {x: 0, y: 0}
   _endTilePoint: {x: 0, y: 0}
---- !u!114 &8650930347802269019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818614314869997667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 705cd02eb1992ee4cbc415b76d15528a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  cursorMode: 0

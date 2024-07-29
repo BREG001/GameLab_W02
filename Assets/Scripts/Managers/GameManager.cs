@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    private static GameManager instance;
 
     public Grid MapGrid;
     public Camera MainCamera;
 
     public CropData[] Crops;
+    public UpgradeData[] Upgrades;
 
     void Awake()
     {
-        Instance = this;
+        if (null == instance)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
+
+    public static GameManager Instance
+    {
+        get
+        {
+            if (null == instance)
+                return null;
+            return instance;
+        }
     }
 }

@@ -19,10 +19,10 @@ public class CursorController : MonoBehaviour
 
     void Start()
     {
-        _startTilePoint = FarmController.instance.StartTilePos;
+        _startTilePoint = FarmController.Instance.StartTilePos;
         _endTilePoint = _startTilePoint +
-                        new Vector2Int(FarmController.instance._width - 1,
-                            FarmController.instance._height - 1);
+                        new Vector2Int(FarmController.Instance._width - 1,
+                            FarmController.Instance._height - 1);
     }
 
     void Update()
@@ -44,11 +44,11 @@ public class CursorController : MonoBehaviour
 
                 if (cursorMode == CursorModeEnum.Harvest)
                 {
-                    FarmController.instance.HarvestCrop(plantPosition.x, plantPosition.y);
+                    FarmController.Instance.HarvestCrop(plantPosition.x, plantPosition.y);
                 }
                 else if (cursorMode == CursorModeEnum.Plant)
                 {
-                    FarmController.instance.PlantCrop(plantPosition.x, plantPosition.y, 0);
+                    FarmController.Instance.PlantCrop(plantPosition.x, plantPosition.y, 0);
                 }
             }
         }
@@ -78,9 +78,9 @@ public class CursorController : MonoBehaviour
         int x = plantPosition.x - _startTilePoint.x;
         int y = plantPosition.y - _startTilePoint.y;
 
-        if (FarmController.instance.Crops[x, y].isGrown)
+        if (FarmController.Instance.Crops[x, y].isGrown)
             cursorMode = CursorModeEnum.Harvest;
-        else if (!FarmController.instance.Crops[x, y].isGrown)
+        else if (!FarmController.Instance.Crops[x, y].isGrown)
             cursorMode = CursorModeEnum.Plant;
     }
 

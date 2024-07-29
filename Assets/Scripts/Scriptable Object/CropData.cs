@@ -16,5 +16,10 @@ public class CropData : ScriptableObject
     */
     [Tooltip("성장 시간. 초 단위")]
     public float GrowTime;
-    public GameObject CropObject;
+    public GameObject CropPrefab;
+    public int PurchaseMoney;
+    public int SellMoney;
+    [Multiline (5)]
+    public string Desc;
+    public string GrowTimeDesc;
 }
