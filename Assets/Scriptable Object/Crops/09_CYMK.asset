@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CropName: CYMK
   CropID: 9
-  Desc: "\uD14C\uC2A4\uD2B8\uC6A9 \uC791\uBB3C"
+  Desc: "\uC131\uC7A5 \uC644\uB8CC \uC2DC\uAC04: 4m 50s\n\uD574\uAE08 \uC7AC\uB8CC:
+    C 110\uAC1C, M 70\uAC1C, W 40\uAC1C, K 40\uAC1C\n\uAD6C\uB9E4\uAC00: 7 MEM\n\uD310\uB9E4\uAC00:
+    17 MEM"
   GrowTimeDesc: 4m 50s
   GrowTime: 290
   CropPrefab: {fileID: 5476161275853376466, guid: 05aa211874b81b046992911d357e8e18, type: 3}
   PurchaseMoney: 7
-  SellMoney: 6
+  SellMoney: 17
   WaterCount: 7
   UnlockCrops:
   - Id: 3

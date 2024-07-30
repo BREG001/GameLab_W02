@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d948b785d7d8b524ea72435e3e29d62b, type: 3}
-  m_Name: test upgrade
+  m_Name: 02_WaterBot
   m_EditorClassIdentifier: 
-  UpgradeName: test
-  UpgradeId: 0
-  Money: 100
-  UpgradePrefab: {fileID: 0}
+  UpgradeName: "\uC2A4\uD504\uB9C1\uCFE8\uB7EC"
+  UpgradeId: 2
+  MaxLevel: 10
+  Money: 00000000000000000000000000000000000000000000000000000000000000000000000000000000

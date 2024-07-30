@@ -59,7 +59,7 @@ public class FarmController : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 Crops[x, y] = new Crop();
-                Crops[x, y].cropID = -1;
+                Crops[x, y].cropID = -2;
                 Crops[x, y].isGrown = false;
                 Crops[x, y].growLevel = 0;
                 Crops[x, y].plantTime = 0f;
@@ -74,7 +74,67 @@ public class FarmController : MonoBehaviour
         {
             for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
             {
-                Crops[x, y].cropID = -2;
+                Crops[x, y].cropID = -1;
+            }
+        }
+    }
+
+    public void UnlockBlock(int _level)
+    {
+        if (_level == 0)
+        {
+            TempWidth = 23;
+
+            Vector2Int tempVector2Int = TempStartTilePos - StartTilePos;
+            for (int x = 5 - StartTilePos.x; x < tempVector2Int.x + TempWidth; x++)
+            {
+                for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
+                {
+                    Crops[x, y].cropID = -1;
+                }
+            }
+        }
+        else if (_level == 1)
+        {
+            int _x = TempStartTilePos.x;
+            TempStartTilePos.x = -18;
+            TempWidth = 36;
+
+            Vector2Int tempVector2Int = TempStartTilePos - StartTilePos;
+            for (int x = tempVector2Int.x; x < _x - StartTilePos.x; x++)
+            {
+                for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
+                {
+                    Crops[x, y].cropID = -1;
+                }
+            }
+        }
+        else if (_level == 2)
+        {
+            TempWidth = 51;
+
+            Vector2Int tempVector2Int = TempStartTilePos - StartTilePos;
+            for (int x = 18 - StartTilePos.x; x < tempVector2Int.x + TempWidth; x++)
+            {
+                for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
+                {
+                    Crops[x, y].cropID = -1;
+                }
+            }
+        }
+        else if (_level == 3)
+        {
+            int _x = TempStartTilePos.x;
+            TempStartTilePos.x = -33;
+            TempWidth = 66;
+
+            Vector2Int tempVector2Int = TempStartTilePos - StartTilePos;
+            for (int x = 0; x < _x - StartTilePos.x; x++)
+            {
+                for (int y = tempVector2Int.y; y < tempVector2Int.y + TempHeight; y++)
+                {
+                    Crops[x, y].cropID = -1;
+                }
             }
         }
     }
@@ -91,8 +151,8 @@ public class FarmController : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                // 해당 타일에 아무것도 없거나 이미 다 자랐다면 다음 타일로
-                if (Crops[x, y].cropID == -1 || Crops[x, y].isGrown)
+                // 해당 타일에 작물이 없거나 이미 다 자랐다면 다음 타일로
+                if (Crops[x, y].cropID < 0 || Crops[x, y].isGrown)
                     continue;
 
                 // _elapsedTime: 해당 작물 경과 시간

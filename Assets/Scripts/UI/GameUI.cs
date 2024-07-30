@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -13,6 +14,8 @@ public class GameUI : MonoBehaviour
     public CropCountUI CropCountUI;
 
     public GameObject ExpandedUI;
+
+    public UpgradeButton[] UpgradeButtons;
 
     public bool isUIExpanded = true;
 

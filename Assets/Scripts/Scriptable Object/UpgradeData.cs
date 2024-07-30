@@ -11,10 +11,4 @@ public class UpgradeData : ScriptableObject
     public int UpgradeId;
     public int MaxLevel;
     public int[] Money;
-    public GameObject UpgradePrefab;
-
-    public enum UpgradeType
-    {
-        increaseFarm
-    }
 }

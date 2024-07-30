@@ -10,9 +10,13 @@ public class GameManager : MonoBehaviour
     public Grid MapGrid;
     public CursorController Cursor;
 
+    public Transform PlayerTf;
+
     [Header("Resources")]
     public CropData[] Crops;
     public UpgradeData[] Upgrades;
+
+    public GameObject[] BlockedWall;
 
     void Awake()
     {

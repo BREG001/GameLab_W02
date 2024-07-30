@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CropName: C
   CropID: 3
-  Desc: "\uD14C\uC2A4\uD2B8\uC6A9 \uC791\uBB3C"
+  Desc: "\uC131\uC7A5 \uC644\uB8CC \uC2DC\uAC04: 3m\n\uD574\uAE08 \uC7AC\uB8CC: G
+    4\uAC1C, B 4\uAC1C\n\uAD6C\uB9E4\uAC00: 2 MEM\n\uD310\uB9E4\uAC00: 4 MEM"
   GrowTimeDesc: 3m
   GrowTime: 180
   CropPrefab: {fileID: 5476161275853376466, guid: a0dd907bf1b827f4993397007ed7c272, type: 3}

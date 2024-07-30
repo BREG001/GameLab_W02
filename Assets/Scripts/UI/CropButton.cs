@@ -20,6 +20,7 @@ public class CropButton : MonoBehaviour
 
     public void ClickButton()
     {
+        GameManager.Instance.GameUI.SetDescText(GameManager.Instance.Crops[_cropID].Desc);
         if (_isUnlocked)
         {
             GameManager.Instance.Cursor.SetCursorPlantId(_cropID);

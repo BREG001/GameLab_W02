@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CropName: M
   CropID: 5
-  Desc: "\uD14C\uC2A4\uD2B8\uC6A9 \uC791\uBB3C"
+  Desc: "\uC131\uC7A5 \uC644\uB8CC \uC2DC\uAC04: 3m 40s\n\uD574\uAE08 \uC7AC\uB8CC:
+    R 18\uAC1C, B 33\uAC1C\n\uAD6C\uB9E4\uAC00: 3 MEM\n\uD310\uB9E4\uAC00: 7 MEM"
   GrowTimeDesc: 3m 40s
   GrowTime: 220
   CropPrefab: {fileID: 5476161275853376466, guid: 6c9be7824ad637640bc2d41338b9214e, type: 3}
   PurchaseMoney: 3
-  SellMoney: 5
+  SellMoney: 7
   WaterCount: 5
   UnlockCrops:
   - Id: 0

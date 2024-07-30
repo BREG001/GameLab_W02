@@ -14,6 +14,7 @@ public class CursorController : MonoBehaviour
     [SerializeField] private int _cursorCropId;
 
     [SerializeField] private GameObject[] seedCursorContainer;
+    private Transform playerTf;
 
     void Awake()
     {
@@ -26,12 +27,13 @@ public class CursorController : MonoBehaviour
         _endTilePoint = _startTilePoint +
                         new Vector2Int(FarmController.Instance._width - 1,
                             FarmController.Instance._height - 1);
+        playerTf = GameManager.Instance.PlayerTf;
     }
 
     void Update()
     {
         // 커서가 타일맵 위에 있을 시 커서 출력 및 클릭 이벤트 추가
-        if (!CheckCursorOutOfTilemap())
+        if (!CheckCursorOutOfTilemap() && !CheckCursorFarFromPlayer())
         {
             // 커서 출력
             DrawCursor();
@@ -166,6 +168,15 @@ public class CursorController : MonoBehaviour
         Vector3Int cursorTile = GetCursorTile();
         if (cursorTile.x < _startTilePoint.x || cursorTile.x > _endTilePoint.x
             || cursorTile.y < _startTilePoint.y || cursorTile.y > _endTilePoint.y)
+            return true;
+        return false;
+    }
+
+    private bool CheckCursorFarFromPlayer()
+    {
+        Vector3Int cursorTile = GetCursorTile();
+        if (cursorTile.x < playerTf.position.x - 3f || cursorTile.x > playerTf.position.x + 2f ||
+            cursorTile.y < playerTf.position.y - 3f || cursorTile.y > playerTf.position.y + 2f)
             return true;
         return false;
     }

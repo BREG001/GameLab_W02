@@ -13,6 +13,8 @@ public class ItemManager : MonoBehaviour
     public int[] cropCount = new int[12];
     public bool[] unlockedCrop = new bool[12];
 
+    public int[] UpgradeLevels = new int[3];
+
     void Awake()
     {
         if (null == instance)
@@ -60,7 +62,7 @@ public class ItemManager : MonoBehaviour
         // 업그레이드 등으로 돈을 사용
 
         // 현재 소지금이 비용보다 낮으면
-        if (money < GameManager.Instance.Upgrades[_upgradeId].Money[0])
+        if (money < GameManager.Instance.Upgrades[_upgradeId].Money[UpgradeLevels[_upgradeId]])
         {
             Debug.Log($"There is not enough money to purchase {GameManager.Instance.Upgrades[_upgradeId].UpgradeName}. {money} < {GameManager.Instance.Upgrades[_upgradeId].Money}");
             return false;
@@ -68,10 +70,27 @@ public class ItemManager : MonoBehaviour
         // 구매 가능하면
         else
         {
-            money -= GameManager.Instance.Upgrades[_upgradeId].Money[0];
-            GameManager.Instance.GameUI.SetMoneyText();
-            Debug.Log($"Purchase {GameManager.Instance.Upgrades[_upgradeId].UpgradeName}");
-            return true;
+            if (ItemManager.instance.UpgradeLevels[_upgradeId] < GameManager.Instance.Upgrades[_upgradeId].MaxLevel)
+            {
+                money -= GameManager.Instance.Upgrades[_upgradeId].Money[UpgradeLevels[_upgradeId]];
+                UseUpgrade(_upgradeId, ItemManager.instance.UpgradeLevels[_upgradeId]);
+                ItemManager.instance.UpgradeLevels[_upgradeId]++;
+                GameManager.Instance.GameUI.SetMoneyText();
+                GameManager.Instance.GameUI.UpgradeButtons[_upgradeId].UpdateInfo();
+                Debug.Log($"Purchase {GameManager.Instance.Upgrades[_upgradeId].UpgradeName}");
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    private void UseUpgrade(int _upgradeId, int _level)
+    {
+        if (_upgradeId == 0)
+        {
+            GameManager.Instance.BlockedWall[_level].SetActive(false);
+            FarmController.Instance.UnlockBlock(_level);
         }
     }
 

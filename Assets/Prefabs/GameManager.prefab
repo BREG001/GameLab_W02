@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameUI: {fileID: 0}
   MapGrid: {fileID: 0}
-  MainCamera: {fileID: 0}
+  Cursor: {fileID: 0}
   Crops:
   - {fileID: 11400000, guid: a92b78fee2ab7d44b80cd3334f9885e1, type: 2}
   - {fileID: 11400000, guid: ff1d07d251db2dc47b8669ec5f3d1553, type: 2}
@@ -63,6 +63,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 126bcf75cbcf28c4ebace192d6dbc893, type: 2}
   Upgrades:
   - {fileID: 11400000, guid: f3d39a3c84ffd164a89cf3fffe41cff8, type: 2}
+  BlockedWall:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &454299010043497995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70,7 +75,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 857838335191755952}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 694aeb990bf62ee4b96921f50b916a16, type: 3}
   m_Name: 
